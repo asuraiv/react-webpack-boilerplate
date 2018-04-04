@@ -1,4 +1,4 @@
-import {combineReducer} from 'redux';
+import {combineReducers} from 'redux';
 
 import {
 	ADD_TODO, 
@@ -9,22 +9,18 @@ import {
 
 const { SHOW_ALL } = VisibilityFilters;
 
-const initialState = {
-	visibilityFilter: VisibilityFilters.SHOW_ALL,
-	todos: []
-};
 
 function todos(state = [], action) {
 	switch (action.type) {
 		case ADD_TODO:
-			return Object.assign({}, state, [
+			return Object.assign([], state, [
 				...state, {
 					text: action.text,
 					completed: false
 				}
 			]);
 		case COMPLETE_TODO:
-			return Object.assign({}, state, [
+			return Object.assign([], state, [
 				...state.slice(0, action.index),
 				Object.assign({}, state[action.index], {
 					completed: true
@@ -45,7 +41,15 @@ function visibilityFilter(state = SHOW_ALL, action) {
 	}
 }
 
-const todoApp = combineReducer({
+// 리듀서 쪼개기
+// function todoApp(state = {}, action) {
+// 	return {
+// 		visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+// 		todos: todos(state.todos, action)
+// 	};
+// }
+
+const todoApp = combineReducers({
 	visibilityFilter,
 	todos
 });

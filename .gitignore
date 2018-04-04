@@ -1,4 +1,6 @@
 node_modules
 *.iml
 .idea
+**/dist
+npm-debug.log
 /package-lock.json
