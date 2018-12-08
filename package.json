@@ -1,17 +1,29 @@
 {
-  "name": "react-webpack-boilerplate",
-  "author": "asuraiv",
-  "version": "1.0.0",
-  "description": "just study",
-  "scripts": {
-    "build:redux-example": "webpack --config ./src/redux-example/build/webpack.config.js"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2016": "^6.24.1",
-    "redux": "^3.7.2",
-    "webpack": "^4.4.1",
-    "webpack-cli": "^2.0.13"
-  }
+	"name": "react-webpack-boilerplate",
+	"author": "asuraiv",
+	"version": "1.0.0",
+	"description": "Boilerplate for starting project",
+	"scripts": {
+		"build:redux": "webpack --config ./src/build/webpack.redux.config.js",
+		"build:react-redux": "webpack-dev-server --config ./src/build/webpack.react-redux.config.js --mode development"
+	},
+	"dependencies": {
+		"@material-ui/core": "^3.6.1",
+		"@material-ui/icons": "^3.0.1",
+		"react": "^16.6.3",
+		"react-dom": "^16.6.3",
+		"react-redux": "^6.0.0",
+		"redux": "^3.7.2"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.2.0",
+		"@babel/preset-env": "^7.2.0",
+		"@babel/preset-react": "^7.0.0",
+		"babel-loader": "^8.0.4",
+		"babel-preset-es2016": "^7.0.0-beta.3",
+		"node-sass": "^4.10.0",
+		"webpack": "^4.4.1",
+		"webpack-cli": "^3.1.1",
+		"webpack-dev-server": "^3.1.10"
+	}
 }
