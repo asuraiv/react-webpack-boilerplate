@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
+import Layout from "./layout/Layout";
 
 class App extends Component {
 
@@ -10,9 +11,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<Button variant="contained" color="primary">
-				Hello Material!
-			</Button>
+			<Layout/>
 		);
 	}
 }
