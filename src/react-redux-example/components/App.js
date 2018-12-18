@@ -1,13 +1,11 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-// import Button from "@material-ui/core/Button";
+import {connect, Provider} from "react-redux";
 import Layout from "./layout/Layout";
+import configureStore from "../store/configureStore";
+import boardReducers from "../reducer/boardReducers";
 
 class App extends Component {
-
-	constructor(props) {
-		super(props);
-	}
 
 	render() {
 		return (
@@ -16,4 +14,19 @@ class App extends Component {
 	}
 }
 
-ReactDOM.render(<App/>, document.querySelector("#root"));
+const mapDispatchToProps = dispatch => {
+	return {};
+};
+
+const ConnectedApp = connect(
+	state => state,
+	mapDispatchToProps
+)(App);
+
+ReactDOM.render(
+	<Provider store={configureStore(boardReducers)}>
+		<ConnectedApp />
+	</Provider>
+	,
+	document.querySelector("#root")
+);
