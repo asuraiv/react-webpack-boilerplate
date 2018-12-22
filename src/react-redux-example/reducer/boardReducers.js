@@ -7,19 +7,22 @@ import {
 } from "../action/boardActionType"
 
 // 앱 상태
-const board = {
-	list: [],
-	post: {
-		id: null,
-		title: "",
-		writer: "",
-		date: null,
-		content: ""
-	},
-	recentId: 0
+const app = {
+	current: '',
+	board : {
+		list: [],
+		post: {
+			id: null,
+			title: "",
+			writer: "",
+			date: null,
+			content: ""
+		},
+		recentId: 0
+	}
 };
 
-function boardReducer(state = board, action ={}) {
+function boardReducer(state = app.board, action ={}) {
 	switch(action.type) {
 		case CREATE:
 			// do somthing

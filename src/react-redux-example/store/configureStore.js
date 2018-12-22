@@ -13,4 +13,3 @@ export default (reducers, preloadedState) => {
 
 	return createStoreWithMiddleware(reducers, preloadedState);
 }
-
