@@ -10,7 +10,7 @@ const baseAssetPath = path.join(__dirname, "/../react-redux-example/assets")
 
 module.exports = {
 
-	entry: __dirname + '/../react-redux-example/components/App.js',
+	entry: __dirname + '/../react-redux-example/board/components/index.js',
 
 	output: {
 		path: path.resolve(__dirname, '../dist'),
@@ -40,6 +40,16 @@ module.exports = {
 					fallback: "style-loader",
 					use: ['css-loader', 'sass-loader']
 				})
+			},
+			{
+				test: /\.json$/,
+				loader: 'file-loader',
+				type: 'javascript/auto',
+				options: {
+					name() {
+						return "dummy.json";
+					}
+				}
 			}
 		]
 	},

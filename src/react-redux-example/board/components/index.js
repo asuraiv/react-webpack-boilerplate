@@ -1,17 +1,19 @@
 import "assets/scss/board.scss";
+import "assets/dummy.json";
 
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {connect, Provider} from "react-redux";
-import Layout from "./layout/Layout";
-import configureStore from "../store/configureStore";
-import boardReducers from "../reducer/boardReducers";
 
-class App extends Component {
+import configureStore from "../../store/configureStore";
+import reducers from "../reducers";
+import BoardTable from "./BoardTable";
+
+class BoardApp extends Component {
 
 	render() {
 		return (
-			<Layout/>
+			<BoardTable/>
 		);
 	}
 }
@@ -23,10 +25,10 @@ const mapDispatchToProps = dispatch => {
 const ConnectedApp = connect(
 	state => state,
 	mapDispatchToProps
-)(App);
+)(BoardApp);
 
 ReactDOM.render(
-	<Provider store={configureStore(boardReducers)}>
+	<Provider store={configureStore(reducers)}>
 		<ConnectedApp />
 	</Provider>
 	,
