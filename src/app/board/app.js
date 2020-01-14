@@ -5,22 +5,22 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {connect, Provider} from "react-redux";
 
-import configureStore from "../../store/configureStore";
-import reducers from "../reducers";
-import BoardTable from "./BoardTable";
+import configureStore from "../store/configureStore";
+import reducers from "./reducers";
+import {readItems} from "./actions";
+import BoardTable from "./view/BoardTable";
 
 class BoardApp extends Component {
-
 	render() {
 		return (
-			<BoardTable/>
+			<BoardTable props={this.props}/>
 		);
 	}
 }
 
-const mapDispatchToProps = dispatch => {
-	return {};
-};
+const mapDispatchToProps = dispatch => ({
+	readItems: items => dispatch(readItems(items))
+});
 
 const ConnectedApp = connect(
 	state => state,

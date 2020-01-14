@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import axios from "axios";
 
 class BoardTable extends Component {
 
@@ -6,11 +7,21 @@ class BoardTable extends Component {
 		super(props);
 	}
 
+	readItems() {
+		const {readItems} = this.props;
+		const config = {
+			headers: {'Access-Control-Allow-Origin': '*'}
+		};
+		axios.get("http://localhost:9001/dummy.json", config)
+			.then(response => {
+				console.log(response);
+				readItems(response);
+			});
+	}
+
 	renderRows() {
-		console.log("render rows");
-		const rows = [
-		];
-		return rows.map(post =>
+		const {items = []} = this.props;
+		return items.map(post =>
 			<tr key={`rows_${post.id}`}>
 				<td>{post.id}</td>
 				<td>{post.title}</td>
@@ -20,9 +31,10 @@ class BoardTable extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		return (
 			<div>
-				<button onClick={this.renderRows}>load</button>
+				<button onClick={this.readItems.bind(this)}>load</button>
 				<div className="simple-table">
 					<table cellSpacing="0">
 						<colgroup>

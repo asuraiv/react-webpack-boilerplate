@@ -6,17 +6,8 @@ import {
 
 // 앱 상태
 const app = {
-	current: '',
 	board: {
-		items: [],
-		post: {
-			id: null,
-			title: "",
-			writer: "",
-			date: null,
-			content: ""
-		},
-		recentId: 0
+		items: []
 	}
 };
 

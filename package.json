@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"description": "Boilerplate for starting project",
 	"scripts": {
-		"build:react-redux": "webpack-dev-server --config ./build/webpack.react-redux.config.js --mode development"
+		"build:react-redux": "webpack-dev-server --config ./build/webpack.config.js --mode development"
 	},
 	"dependencies": {
 		"@material-ui/core": "^3.6.1",
@@ -21,6 +21,7 @@
 		"@babel/core": "^7.2.0",
 		"@babel/preset-env": "^7.2.0",
 		"@babel/preset-react": "^7.0.0",
+		"axios": "^0.19.1",
 		"babel-loader": "^8.0.4",
 		"babel-preset-es2016": "^7.0.0-beta.3",
 		"css-loader": "^2.0.2",
