@@ -4,8 +4,7 @@
 	"version": "1.0.0",
 	"description": "Boilerplate for starting project",
 	"scripts": {
-		"build:redux": "webpack --config ./src/build/webpack.redux.config.js",
-		"build:react-redux": "webpack-dev-server --config ./src/build/webpack.react-redux.config.js --mode development"
+		"build:react-redux": "webpack-dev-server --config ./build/webpack.react-redux.config.js --mode development"
 	},
 	"dependencies": {
 		"@material-ui/core": "^3.6.1",

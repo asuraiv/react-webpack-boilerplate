@@ -6,11 +6,11 @@ const extractPlugin = new ExtractTextPlugin({
 	allChunks: true
 });
 
-const baseAssetPath = path.join(__dirname, "/../react-redux-example/assets")
+const baseAssetPath = path.join(__dirname, "/../src/assets")
 
 module.exports = {
 
-	entry: __dirname + '/../react-redux-example/board/components/index.js',
+	entry: __dirname + '/../src/board/components/index.js',
 
 	output: {
 		path: path.resolve(__dirname, '../dist'),

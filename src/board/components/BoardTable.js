@@ -7,7 +7,7 @@ class BoardTable extends Component {
 	}
 
 	renderRows() {
-
+		console.log("render rows");
 		const rows = [
 		];
 		return rows.map(post =>
@@ -22,6 +22,7 @@ class BoardTable extends Component {
 	render() {
 		return (
 			<div>
+				<button onClick={this.renderRows}>load</button>
 				<div className="simple-table">
 					<table cellSpacing="0">
 						<colgroup>
