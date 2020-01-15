@@ -7,19 +7,21 @@ import {connect, Provider} from "react-redux";
 
 import configureStore from "../store/configureStore";
 import reducers from "./reducers";
-import {readItems} from "./actions";
+import {loadItems} from "./actions";
 import BoardTable from "./view/BoardTable";
 
 class BoardApp extends Component {
 	render() {
 		return (
-			<BoardTable props={this.props}/>
+			<BoardTable {...this.props}	/>
 		);
 	}
 }
 
 const mapDispatchToProps = dispatch => ({
-	readItems: items => dispatch(readItems(items))
+	onLoadItemsClick: items => {
+		dispatch(loadItems(items));
+	}
 });
 
 const ConnectedApp = connect(

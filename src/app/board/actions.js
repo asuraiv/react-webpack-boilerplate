@@ -2,6 +2,6 @@
 export const READ = "board/READ";
 
 // action 생성자
-export const readItems = (items) => {
+export const loadItems = (items) => {
 	return {type: READ, payload: {items}};
 };
