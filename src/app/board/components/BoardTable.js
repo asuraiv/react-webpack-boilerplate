@@ -4,38 +4,15 @@ class BoardTable extends Component {
 
 	constructor(props) {
 		super(props);
+		this.action = props.boardAction;
 	}
 
-	getItems() {
-		const {onLoadItemsClick} = this.props;
-		// TODO Changing code using fetch or axios is needed
-		const items = [
-			{
-				"id": 1,
-				"title": "첫번째 글",
-				"writer": "홍길동"
-			},
-			{
-				"id": 2,
-				"title": "두번째 글",
-				"writer": "김철수"
-			},
-			{
-				"id": 3,
-				"title": "세번째 글",
-				"writer": "이영희"
-			},
-			{
-				"id": 4,
-				"title": "네번째 글",
-				"writer": "김미자"
-			}
-		];
-		onLoadItemsClick(items);
+	loadItems() {
+		this.action.loadItems();
 	}
 
 	renderRows() {
-		const {items = []} = this.props.board;
+		const {items} = this.props.board;
 		return items.map(post =>
 			<tr key={`rows_${post.id}`}>
 				<td>{post.id}</td>
@@ -46,9 +23,13 @@ class BoardTable extends Component {
 	}
 
 	render() {
+		const {status} = this.props.board;
 		return (
 			<div>
-				<button onClick={this.getItems.bind(this)}>load</button>
+				<span>
+					<button onClick={this.loadItems.bind(this)}>load</button>
+					<span>{status}</span>
+				</span>
 				<div className="simple-table">
 					<table cellSpacing="0">
 						<colgroup>
