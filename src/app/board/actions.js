@@ -1,3 +1,4 @@
+import {requestGet} from "../util/FetchUtils";
 import {
 	LOADING_MSG,
 	LOADING_COMPLETE_MSG
@@ -5,25 +6,30 @@ import {
 
 // define action types
 export const LOAD_ITEMS = "board/LOAD_ITEMS";
-export const CHANGE_STATUS = "board/CHANGE_STATUS";
+export const CHANGE_LOADING = "board/CHANGE_LOADING";
+
+function sleep (delay) {
+	let start = new Date().getTime();
+	while (new Date().getTime() < start + delay);
+}
 
 // action using thunk
 const loadItems = (items) => {
 
 	return (dispatch, getState) => {
 
-		const {status} = getState().board;
+		const {loading} = getState().board;
 
-		if (status != LOADING_MSG) {
-			dispatch({type: CHANGE_STATUS, payload: {status: LOADING_MSG}});
+		if (!loading) {
+			dispatch({type: CHANGE_LOADING, payload: {loading: true}});
 		}
 
-		dispatch({type: LOAD_ITEMS, payload: {items}});
+		sleep(3000);
 
-		setTimeout(
-			() => {dispatch({type: CHANGE_STATUS, payload: {status: LOADING_COMPLETE_MSG}})}
-			, 1000
-		);
+		Promise.resolve(dispatch({type: LOAD_ITEMS, payload: {items}}))
+			.then(() =>
+				dispatch({type: CHANGE_LOADING, payload: {status: LOADING_COMPLETE_MSG}})
+			);
 	};
 };
 
@@ -31,16 +37,10 @@ export const boardAction = (dispatch) => ({
 
 	loadItems() {
 
-		fetch("http://localhost:9001/dummy.json")
-			.then(response => {
-				return response.json();
-			})
+		Promise.resolve(requestGet("http://localhost:9001/dummy.json"))
 			.then(jsonObj => {
 				const {items} = jsonObj;
 				dispatch(loadItems(items));
-			})
-			.catch(err => {
-				console.log(err);
 			});
 	}
 });

@@ -1,4 +1,12 @@
 import React, {Component} from "react";
+import {css} from "@emotion/core";
+import ClipLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 class BoardTable extends Component {
 
@@ -23,7 +31,7 @@ class BoardTable extends Component {
 	}
 
 	render() {
-		const {status} = this.props.board;
+		const {loading} = this.props.board;
 		return (
 			<div>
 				<span>
@@ -44,9 +52,25 @@ class BoardTable extends Component {
 							<th>글쓴이</th>
 						</tr>
 						</thead>
-						<tbody>
-						{this.renderRows()}
-						</tbody>
+
+						{loading ?
+							<tbody>
+								<tr>
+									<td>
+										<ClipLoader
+											css={override}
+											size={150}
+											color={"#123abc"}
+											loading={loading}
+										/>
+									</td>
+								</tr>
+							</tbody>
+							:
+							<tbody>
+								{this.renderRows()}
+							</tbody>
+						}
 					</table>
 				</div>
 			</div>

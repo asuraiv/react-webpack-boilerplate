@@ -2,13 +2,13 @@ import {combineReducers} from "redux";
 
 import {
 	LOAD_ITEMS,
-	CHANGE_STATUS
+	CHANGE_LOADING
 } from "./actions";
 
 // app state
 const app = {
 	board: {
-		status: "",
+		loading: false,
 		items: []
 	}
 };
@@ -22,10 +22,10 @@ function reducer(state = app.board, action = {}) {
 			return Object.assign({}, state, {
 				items: items
 			});
-		case CHANGE_STATUS:
-			const {status} = action.payload;
+		case CHANGE_LOADING:
+			const {loading} = action.payload;
 			return Object.assign({}, state, {
-				status: status
+				loading: loading
 			});
 		default:
 			// Do nothing
