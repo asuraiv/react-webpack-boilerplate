@@ -33,33 +33,37 @@ class BoardTable extends Component {
 					<span>{status}</span>
 				</span>
 				<div className="simple-table">
-					{loading ?
-						<div>
-							<ClipLoader
-								css={css`margin-top: 5px;`}
-								size={20}
-								color={"#000000"}
-							/>
-						</div>
-						:
-						<table cellSpacing="0">
-							<colgroup>
-								<col width="10%"/>
-								<col width="*"/>
-								<col width="15%"/>
-							</colgroup>
-							<thead>
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>글쓴이</th>
-							</tr>
-							</thead>
+					<table cellSpacing="0">
+						<colgroup>
+							<col width="10%"/>
+							<col width="*"/>
+							<col width="15%"/>
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>글쓴이</th>
+						</tr>
+						</thead>
+						{loading ?
+							<tbody>
+								<tr>
+									<td colSpan={3}>
+										<ClipLoader
+											css={css`margin-top: 3px;`}
+											size={20}
+											color={"#000000"}
+										/>
+									</td>
+								</tr>
+							</tbody>
+							:
 							<tbody>
 								{this.renderRows()}
 							</tbody>
-						</table>
-					}
+						}
+					</table>
 				</div>
 			</div>
 		);
