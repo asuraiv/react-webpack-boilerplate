@@ -1,20 +1,16 @@
 import {requestGet} from "../util/FetchUtils";
-import {
-	LOADING_MSG,
-	LOADING_COMPLETE_MSG
-} from "./constants";
 
 // define action types
 export const LOAD_ITEMS = "board/LOAD_ITEMS";
 export const CHANGE_LOADING = "board/CHANGE_LOADING";
 
 function sleep (delay) {
-	let start = new Date().getTime();
+	const start = new Date().getTime();
 	while (new Date().getTime() < start + delay);
 }
 
-// action using thunk
-const loadItems = (items) => {
+// create action using thunk
+const loadItems = () => {
 
 	return (dispatch, getState) => {
 
@@ -24,23 +20,23 @@ const loadItems = (items) => {
 			dispatch({type: CHANGE_LOADING, payload: {loading: true}});
 		}
 
-		sleep(3000);
+		Promise.resolve(requestGet(/* Can change */"http://localhost:9001/dummy.json"))
+			.then(jsonObj => {
 
-		Promise.resolve(dispatch({type: LOAD_ITEMS, payload: {items}}))
-			.then(() =>
-				dispatch({type: CHANGE_LOADING, payload: {status: LOADING_COMPLETE_MSG}})
-			);
+				// for spinner test
+				sleep(3000);
+
+				dispatch({type: CHANGE_LOADING, payload: {loading: false}});
+
+				const {items} = jsonObj;
+				dispatch({type: LOAD_ITEMS, payload: {items}})
+			});
 	};
 };
 
 export const boardAction = (dispatch) => ({
 
 	loadItems() {
-
-		Promise.resolve(requestGet("http://localhost:9001/dummy.json"))
-			.then(jsonObj => {
-				const {items} = jsonObj;
-				dispatch(loadItems(items));
-			});
+		dispatch(loadItems())
 	}
 });

@@ -2,12 +2,6 @@ import React, {Component} from "react";
 import {css} from "@emotion/core";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
-
 class BoardTable extends Component {
 
 	constructor(props) {
@@ -39,39 +33,33 @@ class BoardTable extends Component {
 					<span>{status}</span>
 				</span>
 				<div className="simple-table">
-					<table cellSpacing="0">
-						<colgroup>
-							<col width="10%"/>
-							<col width="*"/>
-							<col width="15%"/>
-						</colgroup>
-						<thead>
-						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>글쓴이</th>
-						</tr>
-						</thead>
-
-						{loading ?
-							<tbody>
-								<tr>
-									<td>
-										<ClipLoader
-											css={override}
-											size={150}
-											color={"#123abc"}
-											loading={loading}
-										/>
-									</td>
-								</tr>
-							</tbody>
-							:
+					{loading ?
+						<div>
+							<ClipLoader
+								css={css`margin-top: 5px;`}
+								size={20}
+								color={"#000000"}
+							/>
+						</div>
+						:
+						<table cellSpacing="0">
+							<colgroup>
+								<col width="10%"/>
+								<col width="*"/>
+								<col width="15%"/>
+							</colgroup>
+							<thead>
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>글쓴이</th>
+							</tr>
+							</thead>
 							<tbody>
 								{this.renderRows()}
 							</tbody>
-						}
-					</table>
+						</table>
+					}
 				</div>
 			</div>
 		);
