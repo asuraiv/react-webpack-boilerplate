@@ -17,7 +17,7 @@ class BoardTable extends Component {
 		const {items} = this.props.board;
 		return items.map(post =>
 			<tr key={`rows_${post.id}`}>
-				<td>{post.id}</td>
+				<td style={{textAlign: "center"}}>{post.id}</td>
 				<td>{post.title}</td>
 				<td>{post.writer}</td>
 			</tr>

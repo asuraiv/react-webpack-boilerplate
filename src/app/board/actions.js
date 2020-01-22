@@ -1,8 +1,8 @@
 import {requestGet} from "../util/FetchUtils";
-
 // define action types
 export const LOAD_ITEMS = "board/LOAD_ITEMS";
 export const CHANGE_LOADING = "board/CHANGE_LOADING";
+
 
 function sleep (delay) {
 	const start = new Date().getTime();

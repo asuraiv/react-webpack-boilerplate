@@ -5,7 +5,7 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 import {connect, Provider} from "react-redux";
 
-import configureStore from "../store/configureStore";
+import getStore from "../store/getStore";
 import reducers from "./reducers";
 import {boardAction} from "./actions";
 
@@ -29,7 +29,7 @@ const ConnectedApp = connect(
 )(BoardApp);
 
 ReactDOM.render(
-	<Provider store={configureStore(reducers)}>
+	<Provider store={getStore(reducers)}>
 		<ConnectedApp />
 	</Provider>
 	,
